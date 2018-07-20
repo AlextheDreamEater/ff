@@ -23,5 +23,15 @@ RSpec.describe Article, type: :model do
 end
 
 
+RSpec.describe Article, type: :model do
+  context "assosiations tests" do 
+	it "should be associated with a user" do
+	t = User.create(:userid => "John", :email => "john@john.com")
+    no_user_article = Article.create(:title => "John is cool", :text => "Be like John" )
+    no_user_article.should_not be_valid
+  end
+	end
+
+end
 
 
