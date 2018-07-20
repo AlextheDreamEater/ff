@@ -1,0 +1,20 @@
+
+
+<h1> Create an Account! </h1>
+<%= form_for @user do |f| %>
+
+<%= f.text_field :userid, placeholder: 'Input an ID', class: 'form-control' %>
+<%= f.email_field :email, placeholder: 'Input an Email', class: 'form-control' %>
+<%= f.password_field :password, placeholder: 'Create a Password', class: 'form-control' %>
+<%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'form-control' %>
+<%= f.submit 'Create Account' %>
+<%end%>
+
+
+<div>
+<%= link_to 'Articles', articles_path, class: 'nav-link'%>
+</div>
+
+<div>
+<%= link_to 'Home Page', welcome_index_path %>
+</div>

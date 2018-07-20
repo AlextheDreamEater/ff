@@ -1,0 +1,79 @@
+<% if current_user && current_user.admin? %>
+	
+	<p><%= link_to 'Add Article', new_article_path %></p>
+
+<% else %>
+	
+	<p><%= link_to 'Home Page', welcome_index_path %></p>
+<% end %>
+
+<h1> List of all Articles </h1>
+
+<table>
+	<tr>
+	<th>Title</th>
+	<th>Text</th>
+	<th colspan="3">Editing Options</th>
+	</tr>
+	<% @articles.each do |x|%>
+	</tr>
+		<td>
+		<%= x.title %>
+		</td>
+		<td>
+		<%= truncate(x.text, length: 75)%>
+		</td>
+
+<% if current_user && current_user.admin? %>
+<td>|
+ <%=link_to 'Show', article_path(x) %>
+</td>
+
+<td>| 
+ <%=link_to 'Edit', edit_article_path(x) %>
+</td>
+
+<td>| 
+ <%=link_to 'Delete', article_path(x),
+ 						method: :delete, 
+                        data: { confirm: 'Are you sure?' } %>|
+</td>
+
+ <% else %>
+<td>|
+ <%=link_to 'Show', article_path(x) %> |
+</td>
+<% end %>
+
+
+<%end%>
+</table>
+
+
+
+<%= paginate @articles %>
+
+<br/>
+
+<div id="thing"> 
+ 		
+        <button type="button" onclick="loadDoc()">Contact Info</button>
+</div>
+
+           
+         
+
+  <script>
+            function loadDoc() {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("thing").innerHTML =
+                  this.responseText;
+                }
+              };
+              xhttp.open("GET", "ajax_info.txt", true);
+              xhttp.send();
+            }
+   </script>
+

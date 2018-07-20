@@ -1,0 +1,15 @@
+<h1>Please Sign In</h1>
+
+<%= form_tag sessions_path do %>
+<%= text_field_tag :user_id, nil, placeholder: 'UserID' %>
+<%= password_field_tag :password, nil, placeholder: 'Password' %>
+<%= submit_tag 'Sign In' %>
+<% end %>
+
+<div>
+<%= link_to 'Articles', articles_path, class: 'nav-link'%>
+</div>
+
+<div>
+<%= link_to 'Home Page', welcome_index_path %>
+</div>
